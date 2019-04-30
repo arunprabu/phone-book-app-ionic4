@@ -1,0 +1,50 @@
+Notes
+=====
+Modal Page
+------------
+create the modal page 
+ionic g pages/contacts/contact-details/edit-modal 
+import EditModalPageModule in app.module.ts, then only modals will work when we use modal controller.
+launch the up the modal page on click of a button
+//below is the code 
+  async openEditModal(){
+    const editModal = await this.modalController.create({
+      //syntax is to use modal page
+      component: EditModalPage,
+      componentProps: {//url param data, we can get it in modalpage.ts via navParams  
+        id: 1
+      }
+    });
+    editModal.present();
+  }
+
+
+Debugging Android Apps
+---------------------
+once you run the command 
+ ionic cordova run android 
+
+Check the console.logs in the android studio App
+
+------------
+
+Setting up Calendar
+-------------------
+https://www.npmjs.com/package/ionic2-calendar
+The above package supports Ionic 4 also.
+Further Ref: https://devdactic.com/ionic-4-calendar-app/
+
+Manage States
+------------
+1. UI States (example: when data is loading.. show spinner)
+2. Local States (pass data across components/pages using behaviour subject and subscription)
+3. Persistent States
+
+Ionic Caching or Offline mode 
+------------------------------
+Ref: https://devdactic.com/ionic-4-offline-mode/
+
+Ionic LifeCycle Hooks
+----
+https://ionicframework.com/docs/lifecycle/angular
+

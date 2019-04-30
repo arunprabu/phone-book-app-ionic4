@@ -9,12 +9,27 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
+    loadChildren: './pages/home/home.module#HomePageModule'
   },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  }
+  { 
+    path: 'contacts', 
+    children: [
+      { 
+        path: '', 
+        loadChildren: './pages/contacts/list/list.module#ListPageModule' 
+      },
+      { 
+        path: 'new', 
+        loadChildren: './pages/contacts/add-contact/add-contact.module#AddContactPageModule' 
+      },
+      { 
+        path: ':id', 
+        loadChildren: './pages/contacts/contact-details/contact-details.module#ContactDetailsPageModule' 
+      }
+    ]
+  },
+  { path: 'calendar', loadChildren: './pages/calendar/calendar.module#CalendarPageModule' }
+  
 ];
 
 @NgModule({

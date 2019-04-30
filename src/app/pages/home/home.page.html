@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      My Phone Book!
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Phone Book v 1.0</ion-card-subtitle>
+      <ion-card-title>Welcome to Phone Book App!</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content class="ion-text-center">
+      An app that helps you manage contacts!
+      <br>
+      <br>
+      <ion-button color="primary" fill="outline" 
+        routerLink="../contacts">Browse Contacts</ion-button>
+
+      <ion-button routerLink="../contacts/new">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        Add Contact
+      </ion-button>
+
+      <br><br>
+      <ion-button color="light" (click)="showAlert()">Show Alert</ion-button>
+
+      <br>
+      <br>
+      <ion-button color="light" routerLink="../calendar">Calendar Demo</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
