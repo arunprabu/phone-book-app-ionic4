@@ -11,4 +11,31 @@
 
 <ion-content>
   <p>The User Id is: {{userId}}</p>
+  <h2>Angular 7 Reactive Forms with validation</h2>
+  <form name="form" [formGroup]="contactDetailsForm">
+    <ion-item>
+      <ion-label position="floating" color="primary">name</ion-label>
+      <ion-input type="text" formControlName="name" class="form-control" 
+      [(ngModel)]="contactData.name" required></ion-input>
+      <!-- ToDo: Inonic Form Validation by Arun -->
+      <!-- <div class="invalid-feedback">
+        <div>Name is required</div>
+      </div> -->
+    </ion-item>
+    <div>
+      <ion-button (click)="updateContact()" color="primary">Update</ion-button>
+    </div>
+
+    <!-- <ion-item>
+      <ion-label position="floating" color="primary">Username</ion-label>
+      <ion-input type="text" formControlName="username" class="form-control" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.username">
+        <div class="error-message" *ngIf="validations_form.get('username').hasError(validation.type) && (validations_form.get('username').dirty || validations_form.get('username').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div> -->
+  </form>
 </ion-content>

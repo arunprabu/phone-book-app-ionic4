@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
     children: [
       { 
         path: '', 
-        loadChildren: './pages/contacts/list/list.module#ListPageModule' 
+        loadChildren: './pages/contacts/list/list.module#ListPageModule',
+        canActivate: [AuthGuard]
       },
       { 
         path: 'new', 
@@ -28,8 +30,9 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'calendar', loadChildren: './pages/calendar/calendar.module#CalendarPageModule' }
-  
+  { path: 'calendar', loadChildren: './pages/calendar/calendar.module#CalendarPageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
+  { path: 'mycalendar', loadChildren: './pages/mycalendar/mycalendar.module#MycalendarPageModule' }
 ];
 
 @NgModule({

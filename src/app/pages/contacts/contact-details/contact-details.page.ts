@@ -3,6 +3,7 @@ import { ContactService } from 'src/app/services/contact.service';
 import { IContact } from 'src/app/interfaces/icontact';
 import { ModalController } from '@ionic/angular';
 import { EditModalPage } from './edit-modal/edit-modal.page';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact-details',
@@ -12,12 +13,16 @@ import { EditModalPage } from './edit-modal/edit-modal.page';
 export class ContactDetailsPage implements OnInit {
   
   contactData: IContact;
+  contactId: string;
 
   constructor(private contactService: ContactService, 
-              private modalController: ModalController) { }
+              private modalController: ModalController,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.contactService.getContactById('1')
+    this.contactId = this.activatedRoute.snapshot.paramMap.get('id');
+
+    this.contactService.getContactById(this.contactId)
               .subscribe( (resp: IContact) => {
                 this.contactData = resp;
               });
@@ -27,9 +32,7 @@ export class ContactDetailsPage implements OnInit {
     const editModal = await this.modalController.create({
       //syntax is to use modal page
       component: EditModalPage,
-      componentProps: {
-        id: 1
-      }
+      componentProps: this.contactData
     });
     editModal.present();
   }

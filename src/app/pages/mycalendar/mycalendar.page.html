@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Calendar </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Start Time</ion-label>
+    <ion-datetime display-format="MMM DD, YYYY HH:mm" [(ngModel)]="startTime"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>End Time</ion-label>
+    <ion-datetime display-format="MMM DD, YYYY HH:mm" [(ngModel)]="endTime"></ion-datetime>
+  </ion-item>
+  <ion-button (click)="addEvent()">Add Event</ion-button>
+</ion-content>

@@ -3,6 +3,9 @@ import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { AlertController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
 
+import { Calendar } from '@ionic-native/calendar/ngx';
+
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.page.html',
@@ -29,10 +32,16 @@ export class CalendarPage implements OnInit {
   }
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
-  constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string) { }
+  constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string, 
+  private nativeCalendar: Calendar) { }
 
 
   ngOnInit() {
+        
+    // this.nativeCalendar.createCalendar('MyCalendar').then(
+    //   (msg) => { console.log(msg); },
+    //   (err) => { console.log(err); }
+    // );
   }
 
   switchToMonthView() {
@@ -48,6 +57,13 @@ export class CalendarPage implements OnInit {
 
   // Create the right event format and reload source
   addEvent() {
+
+    this.nativeCalendar.createEvent("Testing Ionic", 
+                                      "Bangalore", 
+                                      "some test", 
+                                      new Date(this.event.startTime), 
+                                      new Date(this.event.endTime));
+
     let eventCopy = {
       title: this.event.title,
       startTime: new Date(this.event.startTime),
@@ -64,9 +80,11 @@ export class CalendarPage implements OnInit {
       eventCopy.endTime = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate() + 1));
     }
 
+    
     this.eventSource.push(eventCopy);
     this.myCal.loadEvents();
-    this.resetEvent();
+    
+    //this.resetEvent();
   }
 
   // Change current month/week/day
@@ -126,5 +144,9 @@ export class CalendarPage implements OnInit {
       endTime: new Date().toISOString(),
       allDay: false
     };
+  }
+
+  onCurrentDateChanged(){
+    
   }
 }
